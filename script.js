@@ -18,7 +18,7 @@
 //3            
     }).then(function(json) { //the json() method is used to gain access to the JSON data contained in the response object.
                 const container = document.getElementById("container");
-                let displayAstronauts = ''; /
+                let displayAstronauts = ''; 
                 for(let astronaut=0; astronaut< json.length; astronaut++){
                     
                     displayAstronauts += `
@@ -35,7 +35,7 @@
                     </div>
                 `;
                 }
-                container.innerHTML = astronauts;
+                container.innerHTML = displayAstronauts;
             });
         })
 
