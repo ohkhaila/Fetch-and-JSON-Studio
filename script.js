@@ -12,19 +12,32 @@
 
 //1 & 2
     window.addEventListener('load', function(){
+        
         fetch("https://handlers.education.launchcode.org/static/astronauts.json").then(function(response){
-            console.log(response);
-            response.json().then( function(json) { //the json() method is used to gain access to the JSON data contained in the response object.
-            const div = document.getElementById("container");
-//3
-            div.innerHTML = `
-                <div class = 'astronaut'>
-                    <div class = 'bio'>
-                        <h3> ${json.firstName} ${json.lastName}</h3>
+            return response.json();
+//3            
+    }).then(function(json) { //the json() method is used to gain access to the JSON data contained in the response object.
+                const container = document.getElementById("container");
+                let displayAstronauts = ''; /
+                for(let astronaut=0; astronaut< json.length; astronaut++){
+                    
+                    displayAstronauts += `
+                    <div class = "astronaut">
+                        <div class = "bio">
+                            <h3> ${json[astronaut].firstName} ${json[astronaut].lastName}</h3>
+                            <ul>
+                                <li>Hours in Space: ${json[astronaut].hoursInSpace}</li>
+                                <li>Active: ${json[astronaut].active}</li>
+                                <li>Skills: ${json[astronaut].skills}</li>
+                            </ul>
+                        </div>
+                        <img class="avatar" src="${json[astronaut].picture}"/>
                     </div>
-            `;
+                `;
+                }
+                container.innerHTML = astronauts;
             });
         })
 
        // let getAstronaughtId = document.getElementById
-    })
+  
